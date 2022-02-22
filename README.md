@@ -1,7 +1,7 @@
 # DAO-ToolBox
 DAO ToolBox 🧰: Treasurer Wallet
 
-Non-Custodial Smart Contract Wallet to allow DAO treasurers to perform staking operations on allocated treasury funds 🏦.<br>
+Non-Custodial Smart Contract Wallet permitting DAO treasurers to perform staking operations on allocated treasury funds 🏦.<br>
   &ensp;Features:<br>
   &emsp;💰 ONE withdrawn directly to DAO Multi-Sig.<br>
   &emsp;👤 DAO full control over appointing and revoking treasurer account.<br>
