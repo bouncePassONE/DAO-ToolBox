@@ -27,7 +27,7 @@ contract StakingPrecompilesDelegatecall {
                                     validatorAddress,
                                     amount);
     assembly {
-      // we estimate a gas consumption of 25k per precompile
+      // estimated gas consumption of 25k per precompile
       result := delegatecall(25000,
         0xfc,
         
@@ -45,7 +45,7 @@ contract StakingPrecompilesDelegatecall {
                                     validatorAddress,
                                     amount);
     assembly {
-      // we estimate a gas consumption of 25k per precompile
+      // estimated gas consumption of 25k per precompile
       result := delegatecall(25000,
         0xfc,
         
@@ -61,7 +61,7 @@ contract StakingPrecompilesDelegatecall {
     bytes memory encodedInput = abi.encodeWithSelector(StakingPrecompilesSelectors.CollectRewards.selector,
                                     msg.sender);
     assembly {
-      // we estimate a gas consumption of 25k per precompile
+      // estimated gas consumption of 25k per precompile
       result := delegatecall(25000,
         0xfc,
         
