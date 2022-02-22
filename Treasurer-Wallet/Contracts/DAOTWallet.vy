@@ -4,17 +4,12 @@
 #@license MIT
 
 interface Staking:
-    def _delegate(validatorAddress:address,amount:uint256): nonpayable
-    def _undelegate(validatorAddress:address,amount:uint256): nonpayable
-    def _collectRewards(): nonpayable
+    def _delegate(validatorAddress:address,amount:uint256)    :  nonpayable
+    def _undelegate(validatorAddress:address,amount:uint256)  :  nonpayable
+    def _collectRewards()                                     :  nonpayable
 
-multisigDAO         :  public(address)
-treasurerAccount    :  public(address)
-
-
-@external
-def __init__():
-    self.multisigDAO = msg.sender
+multisigDAO       :  public(address)
+treasurerAccount  :  public(address)
 
 @external
 @payable
@@ -23,8 +18,8 @@ def __default__():
     
 @external
 def setupWallet():
-    assert self.multisigDAO == ZERO_ADDRESS
-    self.multisigDAO = msg.sender
+    assert self.multisigDAO  ==  ZERO_ADDRESS
+    self.multisigDAO          =  msg.sender
 
 @external
 @payable
@@ -36,22 +31,22 @@ def DAOWithdraw( amount : uint256 ):
 @nonpayable
 def DAODelegate( validatorAddress : address , amount : uint256 ):
     assert self.treasurerAccount == msg.sender
-    Staking(0x21Bb4A65a7b5e817EAc48a6F2aa714d83253dd35)._delegate( validatorAddress , amount )
+    Staking(0xC7A73F71202d5b6204FBC46c22823Faa7D853645)._delegate( validatorAddress , amount )
 
 @external
 @nonpayable
 def DAOUndelegate( validatorAddress : address , amount : uint256 ):
     assert self.treasurerAccount == msg.sender
-    Staking(0x21Bb4A65a7b5e817EAc48a6F2aa714d83253dd35)._undelegate(  validatorAddress , amount )
+    Staking(0xC7A73F71202d5b6204FBC46c22823Faa7D853645)._undelegate(  validatorAddress , amount )
 
 @external
 @nonpayable
 def DAOCollectRewards():
     assert self.treasurerAccount == msg.sender
-    Staking(0x21Bb4A65a7b5e817EAc48a6F2aa714d83253dd35)._collectRewards()
+    Staking(0xC7A73F71202d5b6204FBC46c22823Faa7D853645)._collectRewards()
 
 
 @external
 def appointTreasurer( _treasurerAccount : address ):
-    assert self.multisigDAO == msg.sender
-    self.treasurerAccount = _treasurerAccount
+    assert self.multisigDAO  ==  msg.sender
+    self.treasurerAccount     =  _treasurerAccount
