@@ -1,82 +1,9 @@
-[
-	{
-		"inputs": [],
-		"name": "_collectRewards",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "validatorAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "_delegate",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "validatorAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "_undelegate",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint8",
-				"name": "directive",
-				"type": "uint8"
-			},
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"name": "StakingPrecompileCalled",
-		"type": "event"
-	}
-]
+[{"stateMutability":"payable","type":"fallback"},
+ {"stateMutability":"nonpayable","type":"function","name":"setupWallet","inputs":[],"outputs":[],"gas":37529},
+ {"stateMutability":"nonpayable","type":"function","name":"appointTreasurer","inputs":[{"name":"_treasurerAccount","type":"address"}],"outputs":[],"gas":37665},
+ {"stateMutability":"payable","type":"function","name":"DAOWithdraw","inputs":[{"name":"amount","type":"uint256"}],"outputs":[],"gas":40805},
+ {"stateMutability":"nonpayable","type":"function","name":"DAODelegate","inputs":[{"name":"validatorAddress","type":"address"},{"name":"amount","type":"uint256"}],"outputs":[],"gas":7681},
+ {"stateMutability":"nonpayable","type":"function","name":"DAOUndelegate","inputs":[{"name":"validatorAddress","type":"address"},{"name":"amount","type":"uint256"}],"outputs":[],"gas":7711},
+ {"stateMutability":"nonpayable","type":"function","name":"DAOCollectRewards","inputs":[],"outputs":[],"gas":7617},
+ {"stateMutability":"view","type":"function","name":"multisigDAO","inputs":[],"outputs":[{"name":"","type":"address"}],"gas":2658},
+ {"stateMutability":"view","type":"function","name":"treasurerAccount","inputs":[],"outputs":[{"name":"","type":"address"}],"gas":2688}]
