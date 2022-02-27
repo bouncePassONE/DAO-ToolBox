@@ -12,7 +12,7 @@ Solidity ^0.8.7
 
 # Test Contracts Live on Testnet
 
-DOAT Wallet Solidity @ [0xFDbB03328E4cD1B0C26402CE81774d70cb8C8B6D](https://explorer.pops.one/address/0xfdbb03328e4cd1b0c26402ce81774d70cb8c8b6d)<br>
+DOAT Wallet Solidity @ [0x79e220f596256b1a573524f88ab3d37840d9a5dc](https://explorer.pops.one/address/0x79e220f596256b1a573524f88ab3d37840d9a5dc)<br>
 Solidity ^0.8.10
 
 StakingContractDelegatecall @ [0xbf8ed4dFD20624bf259dd639BB0d3C15002eC3a3](https://explorer.pops.one/address/0xbf8ed4dfd20624bf259dd639bb0d3c15002ec3a3)<br>
