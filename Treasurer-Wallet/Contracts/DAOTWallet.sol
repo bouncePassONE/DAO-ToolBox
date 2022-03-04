@@ -33,12 +33,29 @@ contract DAOTWallet is AccessControl {
         StakingContractDelegatecall( STPREDELCALCONTRACT )._delegate( validatorAddress , amount );
         return (success);
     }
+    
     function DAOUndelegate( address validatorAddress, uint256 amount ) public onlyRole(TREASURER_ROLE) returns(bool success) {
         StakingContractDelegatecall( STPREDELCALCONTRACT )._undelegate( validatorAddress , amount );
         return (success);
     }
+    
     function DAOCollectRewards() public onlyRole(TREASURER_ROLE) returns(bool success) {
         StakingContractDelegatecall( STPREDELCALCONTRACT )._collectRewards();
         return (success);
+    }
+    
+  
+   // Override functions disable ability for default admin to renounce or revoke itself
+   
+    function renounceRole(bytes32 role, address account) public override(AccessControl) {
+        require(account == _msgSender(), "AccessControl: can only renounce roles for self");
+        require(hasRole(DEFAULT_ADMIN_ROLE, account) == false, "AccessControl: default admin cannot renounce role");
+     
+        _revokeRole(role, account);
+    }
+    
+   function revokeRole(bytes32 role, address account) public override(AccessControl) onlyRole(getRoleAdmin(role)) {
+        require(hasRole(DEFAULT_ADMIN_ROLE, account) == false, "AccessControl: default admin cannot renounce role");
+        _revokeRole(role, account);
     }
 }
