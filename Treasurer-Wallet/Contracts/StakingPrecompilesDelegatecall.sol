@@ -2,8 +2,6 @@
 pragma solidity ^0.8.0;
 
 enum Directive {
-  //CREATE_VALIDATOR, // unused
-  //EDIT_VALIDATOR,   // unused
   DELEGATE,
   UNDELEGATE,
   COLLECT_REWARDS
@@ -20,14 +18,34 @@ abstract contract StakingPrecompilesSelectors {
   function Migrate(address from, address to) public virtual;
 }
 
-contract StakingPrecompilesDelegatecall {
+/**
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes calldata) {
+        return msg.data;
+    }
+}
+
+contract StakingPrecompilesDelegatecall is Context {
   function delegate(address validatorAddress, uint256 amount) internal returns (uint256 result) {
     bytes memory encodedInput = abi.encodeWithSelector(StakingPrecompilesSelectors.Delegate.selector,
-                                    msg.sender,
+                                    _msgSender(),
                                     validatorAddress,
                                     amount);
     assembly {
-      // estimated gas consumption of 25k per precompile
+      // we estimate a gas consumption of 25k per precompile
       result := delegatecall(25000,
         0xfc,
         
@@ -41,11 +59,11 @@ contract StakingPrecompilesDelegatecall {
 
   function undelegate(address validatorAddress, uint256 amount) internal returns (uint256 result) {
     bytes memory encodedInput = abi.encodeWithSelector(StakingPrecompilesSelectors.Undelegate.selector,
-                                    msg.sender,
+                                    _msgSender(),
                                     validatorAddress,
                                     amount);
     assembly {
-      // estimated gas consumption of 25k per precompile
+      // we estimate a gas consumption of 25k per precompile
       result := delegatecall(25000,
         0xfc,
         
@@ -59,9 +77,9 @@ contract StakingPrecompilesDelegatecall {
 
   function collectRewards() internal returns (uint256 result) {
     bytes memory encodedInput = abi.encodeWithSelector(StakingPrecompilesSelectors.CollectRewards.selector,
-                                    msg.sender);
+                                    _msgSender());
     assembly {
-      // estimated gas consumption of 25k per precompile
+      // we estimate a gas consumption of 25k per precompile
       result := delegatecall(25000,
         0xfc,
         
